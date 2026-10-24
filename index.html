@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Reminder & Inventory System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <h2>Medicine Reminder</h2>
+            <ul class="nav-menu">
+                <li class="active" onclick="switchTab('reminders', this)">⏰ Reminders</li>
+                <li onclick="switchTab('inventory', this)">📦 Inventory</li>
+                <li onclick="switchTab('patients', this)">🏥 Patients</li>
+                <li onclick="switchTab('diseases', this)">🦠 Diseases</li>
+                <li onclick="switchTab('alerts', this)">⚠️ Alerts & Data</li>
+            </ul>
+
+            <div class="admin-profile">
+                <div class="admin-avatar">SA</div>
+                <div class="admin-info">
+                    <span class="admin-name">System Admin</span>
+                    <span class="admin-role">Online</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header>
+                <h1 id="page-title">Reminder Management</h1>
+            </header>
+
+            <!-- Screen 1: Reminders (Visible by default) -->
+            <section id="reminders" class="tab-content active-tab">
+                <div class="card">
+                    <h2>Add New Reminder</h2>
+                    <form id="medicine-form">
+                        <input type="text" id="med-name" placeholder="Medicine Name (e.g., Aspirin)" required>
+                        <input type="time" id="med-time" required>
+                        <button type="submit">Add Reminder</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h2>Your Reminders</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Medicine Name</th>
+                                <th>Time</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- JavaScript will put reminders here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Screen 2: Inventory -->
+            <section id="inventory" class="tab-content">
+                <div class="card">
+                    <h2>Add to Inventory</h2>
+                    <form id="inventory-form">
+                        <input type="text" id="inv-name" placeholder="Medicine Name" required>
+                        <input type="number" id="inv-qty" placeholder="Quantity (e.g., 50)" required min="1">
+                        <button type="submit">Add Stock</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h2>Current Stock</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Medicine Name</th>
+                                <th>Quantity Available</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventory-table-body">
+                            <!-- Inventory items will appear here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <!-- Screen 3: Patients -->
+            <section id="patients" class="tab-content">
+                <div class="card">
+                    <h2>Register New Patient</h2>
+                    <form id="patient-form">
+                        <input type="text" id="pat-name" placeholder="Patient Name (e.g., John Doe)" required>
+                        <input type="number" id="pat-age" placeholder="Age" required min="1" style="width: 80px;">
+                        <input type="text" id="pat-disease" placeholder="Primary Diagnosis (e.g., Arthritis)" required>
+                        <button type="submit">Add Patient</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h2>Patient Directory</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Diagnosis</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="patient-table-body">
+                            <!-- Patient records will appear here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Screen 4: Diseases -->
+            <section id="diseases" class="tab-content">
+                <div class="card">
+                    <h2>Link Medicine to Disease</h2>
+                    <form id="disease-form">
+                        <input type="text" id="dis-name" placeholder="Disease (e.g., Hypertension)" required>
+                        <input type="text" id="dis-med" placeholder="Recommended Medicine" required>
+                        <button type="submit">Link Treatment</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h2>Treatment Guidelines</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Disease</th>
+                                <th>Recommended Medicines</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="disease-table-body">
+                            <!-- Treatment links will appear here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Screen 5: Alerts & Data -->
+            <section id="alerts" class="tab-content">
+                <div class="card">
+                    <h2>System Backup</h2>
+                    <p>Download a complete snapshot of all reminders, inventory, patients, and treatments.</p>
+                    <button onclick="downloadBackup()" style="background-color: #27ae60;">📥 Download Backup (.json)</button>
+                </div>
+
+                <div class="card">
+                    <h2>Active System Alerts</h2>
+                    <ul id="system-alerts-list" style="list-style-type: none; padding: 0;">
+                        <!-- Auto-generated alerts will appear here -->
+                    </ul>
+                </div>
+            </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
